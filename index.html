@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./libs/jquery/dist/jquery.min.js"></script>
+    <script src="./libs/mockjs/dist/mock-min.js"></script>
+</head>
+
+<body>
+    <script>
+        window.onload = function() {
+
+            Mock.mock('123', 'post', function(options) {
+                console.log(options);
+                return Mock.mock({
+                    "data|10": [/[a-z]{4,5}/]
+                })
+            })
+
+            $.ajax({
+                url: "123",
+                data: {
+                    username: "joke"
+                },
+                dataType: "json",
+                type: "post",
+                success: function(res) {
+                    console.log(res);
+                }
+            })
+
+        }
+    </script>
+</body>
+
+</html>
